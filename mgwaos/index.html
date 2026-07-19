@@ -1,134 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting - MGPGroup</title>
-    <style>
-        :root {
-            --bg-main: #0b0b0f;
-            --bg-card: #121216;
-            --text-light: #ffffff;
-            --text-muted: #a0a0aa;
-            --blue-accent: #1d4ed8;
-            --discord-color: #5865F2;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mybio.lat</title>
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #000 
+url('https://i.pinimg.com/originals/12/eb/55/12eb5546de3d7124df0fb9362af2587c.gif') 
+center/cover no-repeat;
+    cursor: none;
+    user-select: none;
+}
 
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-light);
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+#custom-cursor {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    opacity: 0.8;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
 
-        .card {
-            background-color: var(--bg-card);
-            border: 1px solid #1f1f29;
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
+#overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.78);
+    pointer-events: none;
+    z-index: 5;
+    transition: opacity 1.8s ease;
+}
 
-        .stickman-box {
-            width: 100px;
-            height: 120px;
-            margin: 0 auto 20px auto;
-        }
+#click-mensaje {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    z-index: 10;
+    text-shadow: 0 0 20px #000;
+    transition: opacity 1.5s ease;
+}
 
-        .head-circle { fill: none; stroke: var(--text-light); stroke-width: 3; }
-        .body-line { stroke: var(--text-light); stroke-width: 3; }
-        
-        .arm-left {
-            stroke: var(--text-light); stroke-width: 3; fill: none;
-            transform-origin: 50px 50px;
-            transform: rotate(-60deg) translateY(-5px);
-        }
-        .arm-right {
-            stroke: var(--text-light); stroke-width: 3; fill: none;
-            transform-origin: 50px 50px;
-            transform: rotate(60deg) translateY(-5px);
-        }
-        .mouth {
-            stroke: var(--text-light); stroke-width: 2; fill: none;
-            d: path("M 44 26 Q 50 34 56 26");
-        }
-        .head-group {
-            transform-origin: 50px 50px;
-            transform: translateY(-2px);
-        }
+#panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
+    width: 380px;
+    max-width: 92vw;
+    background: rgba(0, 0, 0, 0.93);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    padding: 35px 25px 30px;
+    text-align: center;
+    z-index: 30;
+    opacity: 0;
+    transition: all 2s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 0 70px rgba(0, 0, 0, 0.95);
+    pointer-events: none;
+}
 
-        p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin: 10px 0;
-            line-height: 1.5;
-        }
+#panel.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
 
-        .countdown-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--discord-color);
-            margin: 15px 0;
-        }
+#panel.expand {
+    transform: translate(-50%, -50%) scale(1.08);
+    padding: 45px 30px;
+}
 
-        a {
-            color: var(--text-light);
-            text-decoration: none;
-            border-bottom: 1px dashed var(--text-muted);
-            font-size: 0.9rem;
-        }
-        a:hover {
-            color: var(--discord-color);
-            border-bottom-color: var(--discord-color);
-        }
-    </style>
+#pfp {
+    width: 170px;
+    height: 170px;
+    background: #0a0a0a url('https://mgpgroup.xyz/members/owner.jpg') 
+center/cover no-repeat;
+    border: 6px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    margin: 0 auto 18px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.95);
+}
+
+#name {
+    font-size: 2.4rem;
+    color: #fff;
+    margin: 10px 0 8px;
+    text-shadow: 0 0 12px rgba(255,255,255,0.4);
+}
+
+#description {
+    font-size: 1.45rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 20px;
+}
+
+#mgp-link {
+    color: #00ccff;
+    text-decoration: none;
+    font-size: 1.35rem;
+    padding: 10px 28px;
+    border: 2px solid rgba(0, 204, 255, 0.4);
+    border-radius: 50px;
+    display: inline-block;
+    margin: 10px 0;
+    transition: all 0.4s ease;
+}
+
+#mgp-link:hover {
+    background: rgba(0, 204, 255, 0.15);
+    border-color: #00ccff;
+    transform: scale(1.08);
+}
+
+#countdown-container {
+    display: none;
+    margin-top: 15px;
+}
+
+#countdown {
+    font-size: 3.2rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 10px 0;
+    text-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+#skip-btn {
+    margin-top: 8px;
+    padding: 12px 32px;
+    font-size: 1.05rem;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.35);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#skip-btn:hover {
+    background: rgba(255,255,255,0.18);
+    border-color: white;
+}
+</style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="stickman-box">
-            <svg viewBox="0 0 100 120" width="100%" height="100%">
-                <g class="head-group">
-                    <circle cx="50" cy="25" r="12" class="head-circle" />
-                    <circle cx="46" cy="22" r="1.5" fill="white" />
-                    <circle cx="54" cy="22" r="1.5" fill="white" />
-                    <path class="mouth" />
-                </g>
-                <line x1="50" y1="37" x2="50" y2="75" class="body-line" />
-                <path d="M 50 50 L 25 50" class="arm-left" />
-                <path d="M 50 50 L 75 50" class="arm-right" />
-                <line x1="50" y1="75" x2="35" y2="105" class="body-line" />
-                <line x1="50" y1="75" x2="65" y2="105" class="body-line" />
-            </svg>
-        </div>
+<div id="custom-cursor"></div>
+<div id="overlay"></div>
 
-        <p>Connecting to MGWaos YT Channel...</p>
-        <div class="countdown-number" id="timer">5</div>
-        <p><a href="https://www.youtube.com/@Mgwaos" rel="noopener noreferrer">Click here to skip the wait, or if you weren't redirected.</a></p>
+<div id="click-mensaje">Click anywhere to continue</div>
+
+<div id="panel">
+    <div id="pfp"></div>
+    <div id="name">Luis Angel</div>
+    <div id="description">Python Developer</div>
+    <a href="#" id="mgp-link">mgpgroup.xyz</a>
+    
+    <div id="countdown-container">
+        <div id="countdown">5</div>
+        <button id="skip-btn">Click here to skip the wait, or if you 
+weren't redirected</button>
     </div>
+</div>
 
-    <script>
-        const targetUrl = "https://www.youtube.com/@Mgwaos";
-        let secondsLeft = 5;
-        const timerElement = document.getElementById("timer");
+<audio id="miAudio" loop>
+    <source 
+src="https://github.com/user-attachments/assets/904c5549-ea33-493e-a168-53aa1f509c37" 
+type="video/mp4">
+</audio>
 
-        const countdown = setInterval(() => {
-            secondsLeft--;
-            timerElement.textContent = secondsLeft;
-            
-            if (secondsLeft <= 0) {
-                clearInterval(countdown);
-                window.location.href = targetUrl;
-            }
-        }, 1000);
-    </script>
+<script>
+const audio = document.getElementById('miAudio');
+const clickMensaje = document.getElementById('click-mensaje');
+const overlay = document.getElementById('overlay');
+const panel = document.getElementById('panel');
+const mgpLink = document.getElementById('mgp-link');
+const countdownContainer = document.getElementById('countdown-container');
+const countdownEl = document.getElementById('countdown');
+const skipBtn = document.getElementById('skip-btn');
+const cursor = document.getElementById('custom-cursor');
+
+let timeLeft = 5;
+let countdownActive = false;
+
+// Cursor
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+function onInitialClick() {
+    if (audio.paused) {
+        audio.play().catch(() => {});
+
+        clickMensaje.style.opacity = "0";
+        overlay.style.opacity = "0";
+
+        setTimeout(() => panel.classList.add('show'), 300);
+    }
+}
+
+// Click on mgpgroup.xyz button
+mgpLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    // Expand panel
+    panel.classList.add('expand');
+    
+    // Hide initial link and show countdown
+    mgpLink.style.display = 'none';
+    countdownContainer.style.display = 'block';
+    
+    if (!countdownActive) {
+        countdownActive = true;
+        startCountdown();
+    }
+});
+
+function startCountdown() {
+    const timer = setInterval(() => {
+        timeLeft--;
+        countdownEl.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            window.location.href = "https://mgpgroup.xyz";
+        }
+    }, 1000);
+}
+
+// Skip button
+skipBtn.addEventListener('click', () => {
+    window.location.href = "https://mgpgroup.xyz";
+});
+
+// Start
+document.addEventListener('click', onInitialClick, { once: true });
+document.addEventListener('touchstart', onInitialClick, { once: true });
+</script>
 </body>
 </html>
