@@ -3,109 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MGPGroup - Invitation</title>
+    <title>Redirecting - MGPGroup</title>
     <style>
         :root {
             --bg-main: #0b0b0f;
             --bg-card: #121216;
-            --border-color: #1e1e26;
             --text-light: #ffffff;
-            --text-muted: #8e8e99;
+            --text-muted: #a0a0aa;
+            --blue-accent: #1d4ed8;
             --discord-color: #5865F2;
-            --discord-hover: #4752c4;
         }
 
         body {
             background-color: var(--bg-main);
             color: var(--text-light);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             margin: 0;
-            padding: 24px;
+            padding: 0;
             display: flex;
-            align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            box-sizing: border-box;
+            align-items: center;
+            height: 100vh;
         }
 
-        .invite-container {
-            max-width: 400px;
-            width: 100%;
+        .card {
             background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 48px 32px;
+            border: 1px solid #1f1f29;
+            border-radius: 16px;
+            padding: 40px;
             text-align: center;
-            box-sizing: border-box;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .logo-placeholder {
-            font-family: "Didot", "Bodoni MT", "Cinzel", "Georgia", serif;
-            font-size: 1.8rem;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
+        .stickman-box {
+            width: 100px;
+            height: 120px;
+            margin: 0 auto 20px auto;
         }
 
-        .notice {
+        .head-circle { fill: none; stroke: var(--text-light); stroke-width: 3; }
+        .body-line { stroke: var(--text-light); stroke-width: 3; }
+        
+        .arm-left {
+            stroke: var(--text-light); stroke-width: 3; fill: none;
+            transform-origin: 50px 50px;
+            transform: rotate(-60deg) translateY(-5px);
+        }
+        .arm-right {
+            stroke: var(--text-light); stroke-width: 3; fill: none;
+            transform-origin: 50px 50px;
+            transform: rotate(60deg) translateY(-5px);
+        }
+        .mouth {
+            stroke: var(--text-light); stroke-width: 2; fill: none;
+            d: path("M 44 26 Q 50 34 56 26");
+        }
+        .head-group {
+            transform-origin: 50px 50px;
+            transform: translateY(-2px);
+        }
+
+        p {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 0 0 32px 0;
+            font-size: 1.1rem;
+            margin: 10px 0;
+            line-height: 1.5;
         }
 
-        .btn-connect {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background-color: var(--discord-color);
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--discord-color);
+            margin: 15px 0;
+        }
+
+        a {
             color: var(--text-light);
             text-decoration: none;
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            width: 100%;
-            box-sizing: border-box;
-            transition: background-color 0.2s ease;
+            border-bottom: 1px dashed var(--text-muted);
+            font-size: 0.9rem;
         }
-
-        .btn-connect:hover {
-            background-color: var(--discord-hover);
-        }
-
-        .btn-back {
-            display: inline-block;
-            margin-top: 24px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s ease;
-        }
-
-        .btn-back:hover {
-            color: var(--text-light);
+        a:hover {
+            color: var(--discord-color);
+            border-bottom-color: var(--discord-color);
         }
     </style>
 </head>
 <body>
 
-    <div class="invite-container">
-        <div class="logo-placeholder">MGPGroup</div>
-        <p class="notice">
-            You are about to access our main communication channel. Click below to accept the invitation and enter the community.
-        </p>
-        
-        <a href="https://discord.gg" class="btn-connect">
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.578-.406.833a12.256 12.256 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.194.534-3.258 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032a.054.054 0 0 0 .022.038c1.425 1.047 2.784 1.687 4.117 2.1a.05.05 0 0 0 .055-.018c.313-.428.59-.884.825-1.368a.05.05 0 0 0-.027-.069 8.28 8.28 0 0 1-1.175-.559.049.049 0 0 1-.005-.08c.08-.06.158-.12.234-.183a.047.047 0 0 1 .049-.006c2.68 1.228 5.572 1.228 8.22 0a.047.047 0 0 1 .05.006c.075.064.153.123.233.183a.049.049 0 0 1-.006.08 9.001 9.001 0 0 1-1.175.559.05.05 0 0 0-.027.07c.235.484.512.94.825 1.367a.05.05 0 0 0 .055.018c1.335-.413 2.694-1.053 4.117-2.1a.054.054 0 0 0 .022-.038c.324-3.412-.553-6.41-2.276-9.107a.041.041 0 0 0-.021-.018zM5.116 9.095c-.786 0-1.432-.722-1.432-1.61 0-.889.635-1.61 1.432-1.61.8 0 1.442.727 1.432 1.61 0 .888-.632 1.61-1.432 1.61zm4.743 0c-.786 0-1.432-.722-1.432-1.61 0-.889.635-1.61 1.432-1.61.8 0 1.443.727 1.432 1.61 0 .888-.632 1.61-1.432 1.61z"/>
+    <div class="card">
+        <div class="stickman-box">
+            <svg viewBox="0 0 100 120" width="100%" height="100%">
+                <g class="head-group">
+                    <circle cx="50" cy="25" r="12" class="head-circle" />
+                    <circle cx="46" cy="22" r="1.5" fill="white" />
+                    <circle cx="54" cy="22" r="1.5" fill="white" />
+                    <path class="mouth" />
+                </g>
+                <line x1="50" y1="37" x2="50" y2="75" class="body-line" />
+                <path d="M 50 50 L 25 50" class="arm-left" />
+                <path d="M 50 50 L 75 50" class="arm-right" />
+                <line x1="50" y1="75" x2="35" y2="105" class="body-line" />
+                <line x1="50" y1="75" x2="65" y2="105" class="body-line" />
             </svg>
-            Accept Invitation
-        </a>
+        </div>
 
-        <br>
-        <a href="/" class="btn-back">← Return to main page</a>
+        <p>Connecting to Discord server...</p>
+        <div class="countdown-number" id="timer">5</div>
+        <p><a href="https://discord.gg">Click here to skip the wait, or if you weren't redirected.</a></p>
     </div>
 
+    <script>
+        const targetUrl = "https://discord.gg";
+        let secondsLeft = 5;
+        const timerElement = document.getElementById("timer");
+
+        const countdown = setInterval(() => {
+            secondsLeft--;
+            timerElement.textContent = secondsLeft;
+            
+            if (secondsLeft <= 0) {
+                clearInterval(countdown);
+                window.location.href = targetUrl;
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
