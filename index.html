@@ -8,19 +8,19 @@
         :root {
             --bg-main: #0b0b0f;
             --bg-card: #121216;
+            --border-color: #1e1e26;
             --text-light: #ffffff;
-            --text-muted: #8a8a93;
+            --text-muted: #8e8e99;
             --blue-accent: #1d4ed8;
-            --dark-purple: #4c1d95;
-            --discord-color: #5865F2;
+            --purple-accent: #4c1d95;
         }
 
         body {
             background-color: var(--bg-main);
             color: var(--text-light);
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
-            padding: 40px 20px;
+            padding: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -28,160 +28,119 @@
             box-sizing: border-box;
         }
 
-        .profile-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-            max-width: 440px;
+        .container {
+            max-width: 480px;
             width: 100%;
             background-color: var(--bg-card);
-            padding: 48px 36px;
-            border-radius: 24px;
-            border: 1px solid #1a1a22;
-        }
-
-        .visual-identity {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .stickman-frame {
-            width: 90px;
-            height: 100px;
-            background: #16161c;
-            border-radius: 18px;
-            padding: 8px;
-            border: 1px dashed #2d2d3d;
-        }
-
-        .meta-tag {
-            font-family: monospace;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--blue-accent);
-            background: rgba(29, 78, 216, 0.1);
-            padding: 6px 12px;
+            border: 1px solid var(--border-color);
             border-radius: 20px;
+            padding: 56px 40px;
+            box-sizing: border-box;
         }
 
-        .content h1 {
-            font-family: 'Gar観ond', 'Georgia', serif;
-            font-size: 3rem;
-            font-weight: 400;
-            margin: 0 0 16px 0;
-            letter-spacing: -1px;
-        }
-
-        .content p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin: 0 0 40px 0;
-        }
-
-        .head-circle { fill: none; stroke: var(--text-light); stroke-width: 2.5; }
-        .body-line { stroke: var(--text-light); stroke-width: 2.5; }
-        
-        .arm-left {
-            stroke: var(--text-light); stroke-width: 2.5; fill: none;
-            transform-origin: 50px 50px;
-            transform: rotate(35deg);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .arm-right {
-            stroke: var(--text-light); stroke-width: 2.5; fill: none;
-            transform-origin: 50px 50px;
-            transform: rotate(-35deg);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .mouth {
-            stroke: var(--text-light); stroke-width: 2; fill: none;
-            d: path("M 45 31 Q 50 26 55 31");
-            transition: d 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .head-group {
-            transform-origin: 50px 50px;
-            transform: translateY(3px);
-            transition: transform 0.4s ease;
-        }
-
-        .action-link {
+        .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: #181822;
-            color: var(--text-light);
-            border: 1px solid var(--dark-purple);
-            padding: 20px 24px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            border-radius: 14px;
+            margin-bottom: 48px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #1a1a24;
+        }
+
+        .brand-title {
+            font-family: "Didot", "Bodoni MT", "Cinzel", "Georgia", serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        .badge {
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .description {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin: 0 0 48px 0;
+        }
+
+        .nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #17171f;
+            border: 1px solid var(--border-color);
+            padding: 18px 24px;
+            border-radius: 12px;
             text-decoration: none;
-            transition: background 0.3s, border-color 0.3s, transform 0.2s;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
         }
 
-        .action-link:hover {
-            background: var(--discord-color);
-            border-color: var(--blue-accent);
-            transform: translateY(-2px);
+        .nav-item:hover {
+            background-color: #1c1c26;
+            border-color: var(--purple-accent);
         }
 
-        .action-link svg {
-            transition: transform 0.3s;
+        .nav-item span {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .action-link:hover svg {
-            transform: translateX(4px);
+        .indicator {
+            width: 6px;
+            height: 6px;
+            background-color: var(--blue-accent);
+            border-radius: 50%;
         }
 
-        .profile-container:has(.action-link:hover) .arm-left {
-            transform: rotate(-55deg) translateY(-4px);
-        }
-        
-        .profile-container:has(.action-link:hover) .arm-right {
-            transform: rotate(55deg) translateY(-4px);
+        .arrow-icon {
+            opacity: 0.4;
+            transition: opacity 0.2s ease;
         }
 
-        .profile-container:has(.action-link:hover) .mouth {
-            d: path("M 45 27 Q 50 33 55 27");
-        }
-
-        .profile-container:has(.action-link:hover) .head-group {
-            transform: translateY(-1px);
+        .nav-item:hover .arrow-icon {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
 
-    <div class="profile-container">
-        
-            <div class="stickman-frame">
-                <svg viewBox="0 0 100 110" width="100%" height="100%">
-                    <g class="head-group">
-                        <circle cx="50" cy="25" r="11" class="head-circle" />
-                        <circle cx="46" cy="22" r="1.2" fill="white" />
-                        <circle cx="54" cy="22" r="1.2" fill="white" />
-                        <path class="mouth" />
-                    </g>
-                    <line x1="50" y1="36" x2="50" y2="72" class="body-line" />
-                    <path d="M 50 48 L 28 48" class="arm-left" />
-                    <path d="M 50 48 L 72 48" class="arm-right" />
-                    <line x1="50" y1="72" x2="36" y2="100" class="body-line" />
-                    <line x1="50" y1="72" x2="64" y2="100" class="body-line" />
-                </svg>
-            </div>
-            <span class="meta-tag">Est. 2026</span>
+    <div class="container">
+        <div class="header">
+            <h1 class="brand-title">MGPGroup</h1>
+            <span class="badge">HQ Portal</span>
         </div>
 
-        <div class="content">
-            <h1>MGPGroup</h1>
-            <p>We build digital spaces, share ideas, and gather here. Drop by our server to hang out, collaborate, or see what we are currently working on.</p>
-            
-            <a href="/discord/" class="action-link">
-                <span>Enter Discord Server</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <p class="description">
+            We form structured digital ecosystems and private collectives. Our main work infrastructure, documentation hubs, and communication channels are centralized directly through our secure platform network.
+        </p>
+
+        <div class="nav-list">
+            <a href="/discord/" class="nav-item">
+                <span>
+                    <span class="indicator"></span>
+                    Community Network
+                </span>
+                <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
